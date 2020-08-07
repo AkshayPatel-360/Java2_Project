@@ -22,7 +22,7 @@ input[type=text], input[type=email], input[type=password] {
   box-sizing: border-box;
  
 }
-
+ 
 
 
 button {
@@ -67,19 +67,19 @@ span.psw {
 }
 
 
+ 
 
-
-</style>
+</style> 
 <title>LOGIN PAGE</title>
 </head>
 <body>
-<form action="login" method="POST">
+<form action="Login" method="POST">
 <h1>LOGIN HERE</h1>
 <label>EMAIL ID</label>
  <input type="email" name="email"  placeholder="Enter your email" required><br><br>
  
  <label>PASSWORD</label>
- <input type="password" name="password" placeholder="enter your password" required ><br>
+ <input type="password" name="pass" placeholder="enter your password" required ><br>
    
    <input type="checkbox" name="agree">Remember me<br><br>
                   

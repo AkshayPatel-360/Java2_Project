@@ -3,10 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>SIGNUP</title>
-</head>
-<body>
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
@@ -17,7 +13,7 @@ input[type=text], input[type=password], input[type=email] {
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
+  border: solid;
   background: #f1f1f1;
 }
 
@@ -41,7 +37,10 @@ button {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
-}
+   justify-content: center;
+   align-items: center;
+  
+} 
 
 button:hover {
   opacity:1;
@@ -78,7 +77,12 @@ button:hover {
   }
 }
 </style>
-<form action="Singnup" method="POST">
+<meta charset="ISO-8859-1">
+<title>SIGNUP</title>
+</head>
+<body>
+
+<form action="CreateUser" method="POST">
 
 <h1> CREATE A NEW ACCOUNT</h1>
 
@@ -86,7 +90,7 @@ button:hover {
 
 <input type="text" name="lname" placeholder ="enter your last name" required>
  <input type="email" name="email"  placeholder="Enter your email" required><br><br>
- <input type="password" name="password" placeholder="enter your password" required ><br>
+ <input type="password" name="pass" placeholder="enter your password" required ><br>
  
  <!-- GENDER  <input id="Male" type="radio" name="gender"  value="Male" checked>USING RADIO BUTTONS
                     <label for="Male">Male</label>
