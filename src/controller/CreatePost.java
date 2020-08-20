@@ -13,36 +13,39 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import db.UserDBUtil;
+//import db.ItemDBUtil;
+import db.PostDBUtil;
 import model.User;
+import model.UserPost;
 
 /**
- * Servlet implementation class CreateUser
+ * Servlet implementation class CreatePost
  */
-@WebServlet("/CreateUser")
-public class CreateUser extends HttpServlet {
+@WebServlet("/CreatePost")
+public class CreatePost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateUser() {
+    public CreatePost() {
         super();
         // TODO Auto-generated constructor stub
-    } 
+    }
     
     @Resource(name="jdbc/social")
     private DataSource datasource;
-    private UserDBUtil userdb;
-
-	@Override
+    private PostDBUtil postdb;
+    
+    
+    @Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
 		
 		try {
 			
-			userdb = new UserDBUtil(datasource);
+			postdb = new PostDBUtil(datasource);
 		
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -54,45 +57,44 @@ public class CreateUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ArrayList<UserPost> posts = new ArrayList<UserPost>();
+        HttpSession session = request.getSession();
+        
+		User user  =  (User) session.getAttribute("user");
+        String cpost = request.getParameter("cpost");
+		//String email = request.getParameter("email");
 		
-		//create session
-		HttpSession session = request.getSession();
-		
-		//get parameters
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
-		String email = request.getParameter("email");
-		String pass = request.getParameter("pass");
-		
-		// create a temp user for registered
-		User tempUser = new User(fname,lname,email,pass);
-		
-		//user created
-		boolean created = tempUser.createUser(userdb);
+		boolean created = user.createPost(cpost,postdb);
 		
 		if(created) {
 			// store user in session if created 
+			session.setAttribute("posts", posts);
+			
 			// redirect to profile page
 			
-			
-			
-			session.setAttribute("user", tempUser);
-			response.sendRedirect("profile.jsp");
+			//session.setAttribute("user", tempUser);
+			posts = user.getMyPosts(postdb);
+			System.out.println(posts.size() + " size");
+			session.setAttribute("postList", posts);
+			response.sendRedirect("Post.jsp");
 		}else {
 			//redirect to index page in user in registered with an error
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("profile.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("Post.jsp");
 			request.setAttribute("rerror", true);
 			dispatch.forward(request, response);
 		}
 		System.out.println(created);				
 	}
+		
+		
+	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

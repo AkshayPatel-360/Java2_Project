@@ -66,11 +66,12 @@ public class Login extends HttpServlet {
 		
 		System.out.println(canLogin);
 		if(canLogin) {
-			// store user in session if created 
+			// store user in session if created  
 			// redirect to profile page
 			
 			session.setAttribute("user", tempUser);
-			response.sendRedirect("profile.jsp");
+			//--------------response.sendRedirect("profile.jsp");
+			response.sendRedirect("Post.jsp");
 		}else {
 			//redirect to index page in user in registered with an error
 			

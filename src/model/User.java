@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+
+import db.PostDBUtil;
 import db.UserDBUtil;
 
 public class User {
@@ -108,8 +111,41 @@ public class User {
 		return false;
 	}
 	
+	
+public boolean createPost(String content,PostDBUtil postdb) {
+		
+		UserPost tempPost = new UserPost(this.email,content);
+		try {
+			 postdb.insertPost(tempPost);
+			 return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "My name is " + this.fname + " " + this.lname + "\n";
+	}
+
+
+	public ArrayList<UserPost> getMyPosts(PostDBUtil postdb) {
+		
+		ArrayList<UserPost> posts = null;
+		
+		try {
+			 posts = postdb.getAll(this.email);
+			 return posts;
+			 
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return posts;
 	}	
 }
