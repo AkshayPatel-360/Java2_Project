@@ -77,7 +77,7 @@ public class CreatePost extends HttpServlet {
 			posts = user.getMyPosts(postdb);
 			System.out.println(posts.size() + " size");
 			session.setAttribute("postList", posts);
-			response.sendRedirect("Post.jsp");
+			response.sendRedirect("HomePage.jsp");
 		}else {
 			//redirect to index page in user in registered with an error
 			

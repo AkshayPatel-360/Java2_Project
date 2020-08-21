@@ -14,37 +14,6 @@
 <body>
 
 
-
-	<%-- <% 
-	
-		ArrayList<UserPost> allPost = (ArrayList<UserPost>) request.getAttribute("allpost");
-	
-	
-		if(allPost == null){
-			System.out.print("No Post Avaliable");
-			
-		}else{
-			out.println("<ol>");
-			
-			
-			for(UserPost u : allPost)
-			{
-				out.println("<li>");
-			
-					out.print(u.contentPost);
-					out.print("<br>");
-					out.println(u.emailId);
-			 		
-				 		
-		 		out.println("</li>");
-			}
-			out.println("</ol>");
-		}
-		
-		
-	
-	%> --%>
-
 	<div>
 		<table>
 			<tag:forEach var="post" items="${sessionScope.postList}">

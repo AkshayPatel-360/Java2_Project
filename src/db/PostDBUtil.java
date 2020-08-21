@@ -17,6 +17,39 @@ public class PostDBUtil {
 	public PostDBUtil(DataSource datasource) {
 		this.datasource = datasource;
 	}
+	
+	
+	public void DeleteUserPost(int postId) throws Exception
+	
+	{
+		Connection conn = null;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		
+		
+		try
+		{
+			
+			conn = this.datasource.getConnection();
+			
+			String sql = "DELETE FROM posts WHERE postid = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, postId);
+			pstmt.executeUpdate();
+			System.out.print(postId);
+			
+		}
+		
+		finally {
+			// TODO: handle finally clause
+			close(conn,stmt,pstmt,res);
+		}
+	
+	}
+	
+	
 
 	public ArrayList<UserPost> getAllPosts() throws Exception {
 
@@ -107,8 +140,7 @@ public class PostDBUtil {
 
 				int id = res.getInt("postid");
 				String emailId = res.getString("emailid");
-				String content = res.getString("content");
-				String postDate = res.getString("date");
+				String content = res.getString("content");				
 				int likes = res.getInt("likes");
 				System.out.println(id);
 

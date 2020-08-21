@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -23,9 +23,7 @@ import model.User;
 public class CreateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public CreateUser() {
         super();
         // TODO Auto-generated constructor stub
